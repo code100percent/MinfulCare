@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Well-being Sign In/Up</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #e0f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2em;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            background-color: #5e92f3;
+            border-radius: 20px;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 
+                        0 10px 10px rgba(0, 0, 0, 0.22);
+            position: relative;
+            width: 400px;
+            max-width: 100%;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+            background-color: #e3f2fd;
+        }
+
+        input::placeholder {
+            color: #aaa;
+        }
+
+        select {
+            background-color: #e0f7fa;
+            color: #555;
+        }
+
+        .Dropbox {
+            background-color: #e3f2fd;
+        }
+
+        .btn {
+            background-color: #3366cc;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #274b8d;
+        }
+
+        footer {
+            background-color: #222;
+            color: #fff;
+            font-size: 14px;
+            bottom: 0;
+            position: fixed;
+            left: 0;
+            right: 0;
+            text-align: center;
+            z-index: 999;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        footer i {
+            color: red;
+        }
+
+        footer a {
+            color: #3c97bf;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <h2>Welcome to Mindfulcare</h2>
+        <div class="form-container">
+            <form method="Post" action="{% url 'tell_mood' %}">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="Enter your name" required>
+            <input type="email" name="email" placeholder="Enter your email" required>
+            <input type="number" name="age" placeholder="Enter your age" required>
+            <select class="Dropbox" name="gender">
+                <option value="#">Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <select class="Dropbox" name="marital_status" required>
+                <option value="#">Marital Status</option>
+                <option value="Married">Married</option>
+                <option value="Unmarried">Unmarried</option>
+            </select>
+
+            <!-- Sign In button added here -->
+            <button class="btn" id="signIn">NEXT</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>Created with ❤️ by BINARY WIZARDS</p>
+    </footer>
+
+    <script>
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+
+        signUpButton?.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+        });
+
+        signInButton?.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        });
+    </script>
+</body>
+</html>

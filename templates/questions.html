@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindfulCare Check-in</title>
+    <link href="https://unpkg.com/lucide-static/font/lucide.css" rel="stylesheet">
+    <style>
+        /* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #E1EFFE 0%, #EBF4FF 100%);
+    color: #1F2937;
+    min-height: 100vh;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Styles */
+.hero {
+    background: linear-gradient(to right, #2563EB, #3B82F6);
+    color: white;
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin: 1rem 0;
+}
+
+.hero p {
+    color: #BFDBFE;
+    font-size: 1.2rem;
+}
+
+.icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    vertical-align: middle;
+}
+
+.icon-large {
+    width: 3rem;
+    height: 3rem;
+    color: white;
+}
+
+/* Main Content */
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    flex-grow: 1;
+}
+
+.questionnaire {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Question Cards */
+.question-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.5s ease-out;
+}
+
+.question-card h2 {
+    color: #1E40AF;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.subtitle {
+    color: #6B7280;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+/* Mood Grid */
+.mood-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.mood-option {
+    cursor: pointer;
+}
+
+.mood-option input {
+    display: none;
+}
+
+.mood-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background: #F3F4F6;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.mood-content i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #2563EB;
+}
+
+.mood-option input:checked + .mood-content {
+    background: #BFDBFE;
+    transform: scale(1.05);
+}
+
+/* Emotions Grid */
+.emotions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+}
+
+.emotion-checkbox {
+    cursor: pointer;
+    position: relative;
+}
+
+.emotion-checkbox input {
+    display: none;
+}
+
+.emotion-checkbox span {
+    display: block;
+    padding: 0.75rem;
+    background: #F3F4F6;
+    border-radius: 0.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.emotion-checkbox input:checked + span {
+    background: #BFDBFE;
+    color: #1E40AF;
+}
+
+/* Energy Slider 
+.slider-container {
+    padding: 1rem 0;
+}
+
+.energy-slider {
+    width: 100%;
+    height: 8px;
+    background: #E5E7EB;
+    border-radius: 4px;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.energy-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    background: #2563EB;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.energy-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    color: #6B7280;
+    font-size: 0.875rem;
+}*/
+
+/* Activities Grid */
+.activities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+}
+
+.activity-checkbox {
+    cursor: pointer;
+}
+
+.activity-checkbox input {
+    display: none;
+}
+
+.activity-checkbox span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: #F3F4F6;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.activity-checkbox input:checked + span {
+    background: #BFDBFE;
+    color: #1E40AF;
+}
+
+/* Journal Entry */
+textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.5rem;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #2563EB;
+}
+
+/* Submit Button */
+.submit-button {
+    background: #2563EB;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+    margin: 2rem auto;
+    transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+    background: #1E40AF;
+    transform: translateY(-2px);
+}
+
+/* Footer */
+footer {
+    background: #2563EB;
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+}
+
+.copyright {
+    color: #BFDBFE;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .question-card {
+        padding: 1.5rem;
+    }
+
+    .mood-grid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    }
+
+    .emotions-grid,
+    .activities-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <i class="lucide-heart-handshake icon-large"></i>
+            <h1>Mental Well-being Check-in</h1>
+            <p>Take a moment to reflect on how you're feeling today</p>
+        </header>
+
+        <div style="display: flex; justify-content: center;align-items: center;flex-direction: row;gap:10px">
+            <h2>name : {{name}}</h2>
+            <h2>email : {{email}}</h2>
+        </div>
+
+
+        <main>
+            <form method='post' action="instant_relief/" class="questionnaire" id="wellbeingForm">
+                <!-- Mood Section -->
+                {% csrf_token %}
+                <section class="question-card">
+                    <h2><i class="lucide-smile icon"></i> How are you feeling today?</h2>
+                    <div class="mood-grid">
+                        <label class="mood-option">
+                            <input type="radio" name="mood" value="great">
+                            <span class="mood-content">
+                                <i class="lucide-smile-plus"></i>
+                                <span>Great</span>
+                            </span>
+                        </label>
+                        <label class="mood-option">
+                            <input type="radio" name="mood" value="good">
+                            <span class="mood-content">
+                                <i class="lucide-smile"></i>
+                                <span>Good</span>
+                            </span>
+                        </label>
+                        <label class="mood-option">
+                            <input type="radio" name="mood" value="okay">
+                            <span class="mood-content">
+                                <i class="lucide-meh"></i>
+                                <span>Okay</span>
+                            </span>
+                        </label>
+                        <label class="mood-option">
+                            <input type="radio" name="mood" value="down">
+                            <span class="mood-content">
+                                <i class="lucide-frown"></i>
+                                <span>Down</span>
+                            </span>
+                        </label>                   
+                        <label class="mood-option">
+                            <input type="radio" name="mood" value="struggling">
+                            <span class="mood-content">
+                                <i class="lucide-heart-crack"></i>
+                                <span>Struggling</span>
+                            </span>
+                        </label>
+                    </div>
+                </section>                                                            
+
+                <!-- Emotions Section -->
+                <section class="question-card">
+                    <h2><i class="lucide-heart icon"></i> What emotions are you experiencing?</h2>
+                    <p class="subtitle">Select all that apply</p>
+                    <div class="emotions-grid">
+                        <label class="emotion-checkbox">
+                            <input type="radio" name="emotions" value="joy">
+                            <span>Joy</span>
+                        </label>
+                        <label class="emotion-checkbox">
+                            <input type="radio" name="emotions" value="anxiety">
+                            <span>Anxiety</span>
+                        </label>
+                        <label class="emotion-checkbox">
+                            <input type="radio" name="emotions" value="peace">
+                            <span>Peace</span>
+                        </label>
+                        <label class="emotion-checkbox">
+                            <input type="radio" name="emotions" value="stress">
+                            <span>Stress</span>
+                        </label>
+                        <label class="emotion-checkbox">
+                            <input type="radio" name="emotions" value="gratitude">
+                            <span>Gratitude</span>
+                        </label>
+                        <label class="emotion-checkbox">
+                            <input type="radio" name="emotions" value="overwhelmed">
+                            <span>Overwhelmed</span>
+                        </label>
+                        <label class="emotion-checkbox">
+                            <input type="radio" name="emotions" value="hopeful">
+                            <span>Hopeful</span>
+                        </label>
+                        <label class="emotion-checkbox">
+                            <input type="radio" name="emotions" value="tired">
+                            <span>Tired</span>
+                        </label>
+                    </div>
+                </section>
+
+
+                <!-- Journal Entry -->
+                <section class="question-card">
+                    <h2><i class="lucide-pen-line icon"></i> enter your feelings</h2>
+                    <p class="subtitle">Write in words describing your feeling, anythig you feel!</p>
+                    <textarea 
+                        name="feelings" 
+                        rows="4" 
+                        placeholder="Write your thoughts here... (optional)"
+                    ></textarea>
+                </section>
+                
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-button">
+                    <i class="lucide-check-circle"></i>
+                    Complete Check-in
+                </button>
+            </form>
+        </main>
+
+        <footer>
+            <p>Remember: Your feelings are valid, and it's okay to not be okay.</p>
+            <p class="copyright">© 2024 Mindfulcare-in</p>
+        </footer>
+    </div>
+</body>
+</html>

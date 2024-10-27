@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindful Moments</title>
+    <link href="https://unpkg.com/lucide-static/font/lucide.css" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(to bottom, #EBF4FF, #E1EFFE);
+    min-height: 100vh;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hero Section */
+.hero {
+    background-color: #2563EB;
+    color: white;
+    padding: 4rem 1rem;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 48rem;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    color: #BFDBFE;
+}
+
+/* Main Content */
+main {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+/* Card Styles */
+.card {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: scale(1.01);
+}
+
+/* Section Headers */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+    font-size: 1.5rem;
+    color: #1F2937;
+}
+
+/* Icons */
+.icon {
+    width: 2rem;
+    height: 2rem;
+    color: #2563EB;
+}
+
+.icon-large {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Movies Grid */
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.movie-card {
+    background: #F3F4F6;
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+
+.movie-card img {
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
+}
+
+.movie-info {
+    padding: 1rem;
+}
+
+.movie-info h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+}
+
+.movie-info p {
+    color: #4B5563;
+}
+
+/* Music Grid */
+.music-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.music-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #F3F4F6;
+    padding: 1rem;
+    border-radius: 0.75rem;
+}
+
+.music-icon {
+    background: #2563EB;
+    color: white;
+    padding: 0.75rem;
+    border-radius: 50%;
+}
+
+.music-info h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.music-info p {
+    font-size: 0.875rem;
+    color: #4B5563;
+}
+
+.tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.tag {
+    background: #BFDBFE;
+    color: #1E40AF;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+}
+
+/* Quotes Grid */
+.quotes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.quote-card {
+    background: #F3F4F6;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+}
+
+.quote-card blockquote {
+    font-size: 1.125rem;
+    color: #1F2937;
+    margin-bottom: 1rem;
+}
+
+.quote-card cite {
+    color: #2563EB;
+    font-style: normal;
+    font-weight: 500;
+}
+
+/* Footer */
+footer {
+    background: #2563EB;
+    color: white;
+    padding: 2rem 1rem;
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 48rem;
+    margin: 0 auto;
+}
+
+.copyright {
+    color: #BFDBFE;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1.125rem;
+    }
+
+    main {
+        padding: 2rem 1rem;
+        gap: 2rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .movies-grid,
+    .music-grid,
+    .quotes-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="hero-content">
+                <i class="lucide-heart icon-large"></i>
+                <h1>Mindful Moments</h1>
+                <p> {{response}}</p>
+            </div>
+        </header>
+
+        <main>
+            <!--
+            
+            
+            Movies Section -->
+            <section class="card">
+                <div class="section-header">
+                    <i class="lucide-quote icon"></i>
+                    <h2>Daily Wisdom</h2>
+                </div>
+                <div class="quotes-grid">
+                    {% for thought in thoughts %}
+                    <div class="quote-card">
+                        <blockquote>{{thought}}</blockquote>
+                        <!-- <cite>— Robert Frost</cite> -->
+                    </div>
+                    {% endfor %}
+                    <!-- <div class="quote-card">
+                        <blockquote>"You yourself, as much as anybody in the entire universe, deserve your love and affection."</blockquote>
+                        <cite>— Buddha</cite>
+                    </div>
+                    <div class="quote-card">
+                        <blockquote>"What lies behind us and what lies before us are tiny matters compared to what lies within us."</blockquote>
+                        <cite>— Ralph Waldo Emerson</cite>
+                    </div>
+                    <div class="quote-card">
+                        <blockquote>"Your present circumstances don't determine where you can go; they merely determine where you start."</blockquote>
+                        <cite>— Nido Qubein</cite>
+                    </div> -->
+
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="section-header">
+                    <i class="lucide-film icon"></i>
+                    <h2>Therapeutic Films</h2>
+                </div>
+                <div class="movies-grid">
+                    {% for movie in movies %}
+
+                    <div class="movie-card">
+                        <!-- <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=400" alt="Inside Out"> -->
+                        <div class="movie-info">
+                            <h3>{{ movie }} </h3>
+                            <!-- <p>A beautiful exploration of emotions and mental processes</p> -->
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                   
+                    
+                </div>
+            </section>
+
+            <!-- Music Section -->
+            <section class="card">
+                <div class="section-header">
+                    <i class="lucide-film icon"></i>
+                    <h2>Refreshing Melodies</h2>
+                </div>
+                <div class="movies-grid">
+                    {% for music in musics %}
+
+                    <div class="movie-card">
+                        <!-- <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=400" alt="Inside Out"> -->
+                        <div class="movie-info">
+                            <h3>{{ music }} </h3>
+                            <!-- <p>A beautiful exploration of emotions and mental processes</p> -->
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                   
+                    
+                </div>
+            </section>
+            <!-- Quotes Section -->
+            
+        </main>
+
+        <!-- <footer>
+            <div class="footer-content">
+                <p>Binary Wizards</p>
+                
+            </div>
+        </footer> -->
+    </div>
+</body>
+</html>
