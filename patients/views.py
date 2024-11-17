@@ -46,7 +46,7 @@ def instant_relief(request):
         marital_status = Patient.marital_status
 
         Patients_mood.objects.create(mood = mood, emotions= emotions, user=request.user)
-        os.environ["API_KEY"] = 'AIzaSyCRikYbzyNjEfdJArZ4tkP3MG7N94Chxu0'
+        os.environ["API_KEY"] = 'enter your key'
         genai.configure(api_key=os.environ["API_KEY"])
         response = None
         model = genai.GenerativeModel('gemini-1.5-flash-latest')
